@@ -40,7 +40,7 @@ Queued/Running/Success/Failed
 
 # 3 Compositions of DAGs 
 
-**Operator :** 
+## Operator :
 Contains the logic of how the data is processed in the pipeline. It is a Python class that encapsulte the logic to do work units, like a wrapper. When an operator is instanciated, it becomes a Task. It can be generic of very specific.
   - All operators inherit from the abstract class ```BaseOperator``` that contains logic to execute work. 
   - PythonOperator is most common operator, and can execute Python Function.
@@ -69,12 +69,17 @@ Contains the logic of how the data is processed in the pipeline. It is a Python 
 ```
 
 Commun subgroups :  
-  - Sensors
-  - Deferables operators
 
- Deferrable Operators are a type of operator that releases their worker slot while waiting for 
+
+ 
+## Decorators 
+
+_TaskFlow_
+_Sensors_
+_Deferables operators_
+
+_Deferrable Operators are a type of operator that releases their worker slot while waiting for 
 their work to be completed. This can result in cost savings and greater scalability. Astron
 omer recommends using deferrable operators whenever one exists for your use case and 
 your task takes longer than a minute. You must have a triggerer running to use deferrable 
-operators.
-
+operators._
