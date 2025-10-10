@@ -119,7 +119,6 @@ say_hello = PythonOperator(
 ```
 **Common decorators** :
 
-There are several decorators available to use with Airflow. Some of the most commonly used decorators are:
 - DAG decorator (@dag()), which creates a DAG.
 - TaskGroup decorator (@task_group()), which creates a task group.
 - Task decorator (@task()), which creates a Python task.
@@ -129,13 +128,27 @@ There are several decorators available to use with Airflow. Some of the most com
 - Kubernetes pod decorator (@task.kubernetes()), which runs a KubernetesPodOperator task.
 - Sensor decorator (@task.sensor()), which turns a Python function into a sensor.
 
+## Sensors 
+
+Sensors are operators that are waiting for something. It checks if a condition is met and then is in success. Sensor takes following parameters : 
+- mode :
+  - Poke (default mode) : good for short run time. Occupies a worker during all execution and sleeps betwen checks.
+  - Reschedule : good for long run time. if criteria is not met, the sensor releases its worker slot and reschedule for the next check.  
+- poke_interval : default is 60 sec. It defines the wait interval between checks. 
+- exponential_backoff : (boolean) extends exponentially the wait time between pokes. 
+- timeout : (in sec.) max time to check condition before the task fails. 
+- soft_fail : (boolean) if not met it is skipped once timed out.  
+
+**Common sensors** :
+- @task.sensor.decorator: Allows you to turn any Python function that returns a PokeReturn Value into an instance of the BaseSensorOperator class. This way of creating a sensor is useful when checking for complex logic or if you are connecting to a tool via an API that has no specific sensor available.
+- S3KeySensor: Waits for a key (file) to appear in an Amazon S3 bucket. This sensor is useful if you want your DAG to process files from Amazon S3 as they arrive.
+- HttpSensor: Waits for an API to be available. This sensor is useful if you want to ensure your API requests are successful.
+- SqlSensor: Waits for data to be present in a SQL table. This sensor is useful if you want your DAG to process data as it arrives in your database.
+
 # TBD
 
-_TaskFlow/TaskFlowAPI_
-_Sensors_
 _Deferables operators_
 _XCom_
-
 
 _Deferrable Operators are a type of operator that releases their worker slot while waiting for 
 their work to be completed. This can result in cost savings and greater scalability. Astron
