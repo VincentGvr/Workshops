@@ -67,13 +67,11 @@ Contains the logic of how the data is processed in the pipeline. It is a Python 
  env={“MY_VAR”: “Hello World”}
  )
 ```
-
-Commun subgroups :  
-
-
  
 ## Decorators 
 
+
+## TBD
 _TaskFlow_
 _Sensors_
 _Deferables operators_
