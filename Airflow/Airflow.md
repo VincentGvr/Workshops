@@ -148,6 +148,10 @@ Sensors are operators that are waiting for something. It checks if a condition i
 
 Sensor decorator enables to create your own sensor. It returns PokeReturnValue. 
 
+**Best Practices** : 
+
+
+
 # TBD
 
 _Deferables operators_
