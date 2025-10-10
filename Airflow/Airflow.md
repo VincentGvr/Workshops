@@ -70,7 +70,7 @@ Contains the logic of how the data is processed in the pipeline. It is a Python 
  
 ## Decorators 
 
-In Python, decorator is a function that takes another one as argument to extend it. For instance : ```multiply_by_100_decorator``` is the decorator. 
+In Python, decorator is a function that takes another one as argument to extend it. For instance : ```multiply_by_100_decorator``` is the decorator. ```@multiply_by_100_decorator``` enables to use it. 
 
 ```python
  # definition of the decorator function
