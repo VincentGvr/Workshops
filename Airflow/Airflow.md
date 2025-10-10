@@ -13,7 +13,7 @@ It is a workflow as code approach that enables flexible framework. As it is deve
 - Automated testing
 - Extensibility
 
-Apache Airflow is not meant to design event driven workflows/streaming/continuous runs. It needs to has a start and an end. 
+**Warning :** Apache Airflow is not meant to design event driven workflows/streaming/continuous runs. It needs to has a start and an end.
 
 # 2 Introduction to DAGs 
 
