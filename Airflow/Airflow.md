@@ -1,8 +1,8 @@
 # 0 Presentation 
 
 Based on the documentation available at :
-- Apache Airflow : https://airflow.apache.org/docs/apache-airflow/stable/index.html
-- Astronomer : https://www.astronomer.io/ebooks/dags-definitive-guide/?utm_term=airflow%20learn&utm_content=airflow-tutorial-lg&utm_campaign=airflow-guides-row&utm_source=adwords&utm_medium=ppc&hsa_acc=4274135664&hsa_cam=22503860639&hsa_grp=177600554054&hsa_ad=749926177586&hsa_src=g&hsa_tgt=kwd-1477911351967&hsa_kw=airflow%20learn&hsa_mt=b&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=22503860639&gbraid=0AAAAADP7Y9i3JCVAGdxjsxyCd2tNZl6fu&gclid=Cj0KCQjwl5jHBhDHARIsAB0Yqjwhx2vCQoVTdFrlzn2WDcmhXp7pz0AGZDKGvUt6aLNR4dDMXuW4MJIaAi24EALw_wcB
+- [Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/index.html)
+- [Astronomer](https://www.astronomer.io/ebooks/dags-definitive-guide/?utm_term=airflow%20learn&utm_content=airflow-tutorial-lg&utm_campaign=airflow-guides-row&utm_source=adwords&utm_medium=ppc&hsa_acc=4274135664&hsa_cam=22503860639&hsa_grp=177600554054&hsa_ad=749926177586&hsa_src=g&hsa_tgt=kwd-1477911351967&hsa_kw=airflow%20learn&hsa_mt=b&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=22503860639&gbraid=0AAAAADP7Y9i3JCVAGdxjsxyCd2tNZl6fu&gclid=Cj0KCQjwl5jHBhDHARIsAB0Yqjwhx2vCQoVTdFrlzn2WDcmhXp7pz0AGZDKGvUt6aLNR4dDMXuW4MJIaAi24EALw_wcB)
 
 Airflow is an open-source platform to orchestrate and monitor batch-oriented workflows. It can run in any configurations, local laptop to distributed systems.  
 
