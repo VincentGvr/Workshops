@@ -26,7 +26,7 @@ DAGs can have parallel/sequential tasks + conditionnal branches.
 Two requirements in a DAG structure : 
 - No clear direction between tasks (directed)
 - No circular dependencies (acyclic)
-
+e
 Tasks can be simple Python functions, complex data transformations, or external data service calls. 
 
 Composition of DAGs : 
@@ -96,7 +96,7 @@ print(add(1, 9))  # prints 1000
 print(subtract(4, 2))  # prints 200
 ```
 
-Decorators are Part of TaskFlowAPI : an API to easily define DAGS & tasks, that simplifies how to pass data from one task to the other. Otherwise, every function needs to come with it's Operator. 
+Decorators are Part of TaskFlowAPI : an API to easily define DAGS & tasks, that simplifies how to pass data from one task to the other. Otherwise, every function needs to come with it's corresponding Operator, and set dependencies explicitly.  
 
  ```python
 # from airflow.decorators import task
@@ -117,6 +117,16 @@ say_hello = PythonOperator(
    python_callable=_say_hello
 )
 ```
+**Common decorators** 
+There are several decorators available to use with Airflow. Some of the most commonly used decorators are:
+- DAG decorator (@dag()), which creates a DAG.
+- TaskGroup decorator (@task_group()), which creates a task group.
+- Task decorator (@task()), which creates a Python task.
+- Bash decorator (@task.bash()) which creates a BashOperator task.
+- Python Virtual Env decorator (@task.virtualenv()), which runs your Python task in a virtual environment.
+- Branch decorator (@task.branch()), which creates a branch in your DAG based on an evaluated condition.
+- Kubernetes pod decorator (@task.kubernetes()), which runs a KubernetesPodOperator task.
+- Sensor decorator (@task.sensor()), which turns a Python function into a sensor.
 
 # TBD
 
