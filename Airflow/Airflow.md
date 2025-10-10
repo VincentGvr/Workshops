@@ -70,10 +70,32 @@ Contains the logic of how the data is processed in the pipeline. It is a Python 
  
 ## Decorators 
 
+In Python, decorator is a function that takes another one as argument to extend it. 
+Decorators are Part of TaskFlowAPI : an API to easily define DAGS & tasks, that simplifies how to pass data from one task to the other. 
+
+```
+ # definition of the decorator function
+ def multiply_by_100_decorator(decorated_function):
+ def wrapper(num1, num2):
+ result = decorated_function(num1, num2) * 100
+ return result
+ return wrapper
+ # definition of the `add` function decorated with the `multiply_by_100_decorator`
+ @multiply_by_100_decorator
+ def add(num1, num2):
+ return num1 + num2
+ @multiply_by_100_decorator
+ def subtract(num1, num2):
+ return num1 - num2
+ # definition of the `subtract` function decorated with the `multiply_by_100_decorator`
+ # calling the decorated functions
+ print(add(1, 9))  # prints 1000
+ print(subtract(4, 2))  # prints 200
+```
 
 # TBD
 
-_TaskFlow_
+_TaskFlow/TaskFlowAPI_
 _Sensors_
 _Deferables operators_
 
