@@ -6,6 +6,8 @@ Based on the documentation available at :
 
 Airflow is an open-source platform to orchestrate and monitor batch-oriented workflows. It can run in any configurations, local laptop to distributed systems. Based on Python Code, it can execute tasks based on different components, like Python, Bash, Docker images in Kubernates Pods ... 
 
+API = Application Programming Interface. It is a developped interface as a service, to connect computers/programs together, in opposition with user interfaces. It is not necessarly a web API (such as REST API), that means that the API is available via Internet (privately or publically). 
+
 # 1 Airflow versus pipelines in Fabric 
 
 It is a workflow as code approach that enables flexible framework. As it is developed in Python, it enables : 
@@ -90,18 +92,37 @@ In Python, decorator is a function that takes another one as argument to extend 
     return num1 - num2
 
 # calling the decorated functions
-
 print(add(1, 9))  # prints 1000
 print(subtract(4, 2))  # prints 200
 ```
-Decorators are Part of TaskFlowAPI : an API to easily define DAGS & tasks, that simplifies how to pass data from one task to the other. 
 
+Decorators are Part of TaskFlowAPI : an API to easily define DAGS & tasks, that simplifies how to pass data from one task to the other. Otherwise, every function needs to come with it's Operator. 
+
+ ```python
+# from airflow.decorators import task
+ @task
+ def say_hello():
+   return “hello“```
+
+ replaces 
+
+ ```python
+# from airflow.operators.python import PythonOperator
+def _say_hello():
+  return “hello”
+
+say_hello = PythonOperator(
+  task_id=”say_hello”,
+   python_callable=_say_hello
+)```
 
 # TBD
 
 _TaskFlow/TaskFlowAPI_
 _Sensors_
 _Deferables operators_
+_XCom_
+
 
 _Deferrable Operators are a type of operator that releases their worker slot while waiting for 
 their work to be completed. This can result in cost savings and greater scalability. Astron
