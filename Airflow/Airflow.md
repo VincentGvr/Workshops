@@ -117,7 +117,8 @@ say_hello = PythonOperator(
    python_callable=_say_hello
 )
 ```
-**Common decorators** 
+**Common decorators** :
+
 There are several decorators available to use with Airflow. Some of the most commonly used decorators are:
 - DAG decorator (@dag()), which creates a DAG.
 - TaskGroup decorator (@task_group()), which creates a task group.
