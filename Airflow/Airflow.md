@@ -102,7 +102,8 @@ Decorators are Part of TaskFlowAPI : an API to easily define DAGS & tasks, that 
 # from airflow.decorators import task
  @task
  def say_hello():
-   return “hello“```
+   return “hello“
+```
 
  replaces 
 
@@ -114,7 +115,8 @@ def _say_hello():
 say_hello = PythonOperator(
   task_id=”say_hello”,
    python_callable=_say_hello
-)```
+)
+```
 
 # TBD
 
