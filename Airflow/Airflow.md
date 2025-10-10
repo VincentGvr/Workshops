@@ -140,10 +140,13 @@ Sensors are operators that are waiting for something. It checks if a condition i
 - soft_fail : (boolean) if not met it is skipped once timed out.  
 
 **Common sensors** :
-- @task.sensor.decorator: Allows you to turn any Python function that returns a PokeReturn Value into an instance of the BaseSensorOperator class. This way of creating a sensor is useful when checking for complex logic or if you are connecting to a tool via an API that has no specific sensor available.
+
 - S3KeySensor: Waits for a key (file) to appear in an Amazon S3 bucket. This sensor is useful if you want your DAG to process files from Amazon S3 as they arrive.
 - HttpSensor: Waits for an API to be available. This sensor is useful if you want to ensure your API requests are successful.
 - SqlSensor: Waits for data to be present in a SQL table. This sensor is useful if you want your DAG to process data as it arrives in your database.
+- @task.sensor.decorator: Allows you to turn any Python function that returns a PokeReturn Value into an instance of the BaseSensorOperator class. This way of creating a sensor is useful when checking for complex logic or if you are connecting to a tool via an API that has no specific sensor available.
+
+Sensor decorator enables to create your own sensor. It returns PokeReturnValue. 
 
 # TBD
 
