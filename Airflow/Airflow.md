@@ -30,4 +30,43 @@ Tasks can be simple Python functions, complex data transformations, or external 
 Composition of DAGs : 
 - an operator : a python class
 - dependencies between items
-- scheduled based on times or events 
+- scheduled items
+
+Triggers : 
+Scheduled/Manual/Dataset triggered/Backfill
+
+Statuses : 
+Queued/Running/Success/Failed 
+
+# 3 Compositions of DAGs 
+
+**Operator :** 
+Contains the logic of how the data is processed in the pipeline. It is a Python class that encapsulte the logic to do work units, like a wrapper. When an operator is instanciated, it becomes a Task. It can be generic of very specific.
+  - All operators inherit from the abstract class ```BaseOperator``` that contains logic to execute work. 
+  - PythonOperator is most common operator, and can execute Python Function.
+
+```
+ # from airflow.operators.python import PythonOperator
+ def _say_hello():
+ return “hello”
+ say_hello = PythonOperator(
+ task_id=”say_hello”,
+ )
+```
+  
+  - BashOperator can execute bash command or script. 
+
+```
+# from airflow.operators.bash import BashOperator
+ bash_task = BashOperator(
+ task_id=”bash_task”,
+ bash_command=”echo $MY_VAR”,
+ env={“MY_VAR”: “Hello World”}
+ )
+```
+
+Commun subgroups :  
+  - Sensors
+  - Deferables operators
+
+
