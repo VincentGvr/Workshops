@@ -48,7 +48,7 @@ Contains the logic of how the data is processed in the pipeline. It is a Python 
   - If an operator already exists, prefer using it instead of using own Python one, to ensure maintenability & readability.
   - Any operator that inteacts with exernal services require authentication to external services. 
 
-```
+```python
  # from airflow.operators.python import PythonOperator
  def _say_hello():
  return “hello”
@@ -59,7 +59,7 @@ Contains the logic of how the data is processed in the pipeline. It is a Python 
   
   - BashOperator can execute bash command or script. 
 
-```
+```python
 # from airflow.operators.bash import BashOperator
  bash_task = BashOperator(
  task_id=”bash_task”,
@@ -73,7 +73,7 @@ Contains the logic of how the data is processed in the pipeline. It is a Python 
 In Python, decorator is a function that takes another one as argument to extend it. 
 Decorators are Part of TaskFlowAPI : an API to easily define DAGS & tasks, that simplifies how to pass data from one task to the other. 
 
-```
+```python
  # definition of the decorator function
  def multiply_by_100_decorator(decorated_function):
  def wrapper(num1, num2):
