@@ -8,7 +8,7 @@ Airflow is an open-source platform to orchestrate and monitor batch-oriented wor
 
 API = Application Programming Interface. It is a developped interface as a service, to connect computers/programs together, in opposition with user interfaces. It is not necessarly a web API (such as REST API), that means that the API is available via Internet (privately or publically). 
 
-# 1 Airflow versus pipelines in Fabric 
+# :1: Airflow versus pipelines in Fabric 
 
 It is a workflow as code approach that enables flexible framework. As it is developed in Python, it enables : 
 - Version Control & multiple edits/collaboration
@@ -45,7 +45,8 @@ Queued/Running/Success/Failed
 DAGs are made of different tasks. These tasks can be of different kinds, such as : 
 - **Operators** : Items that holds the logic of data processing. 
 - **Deferrable operators** : Asyncrhonous operators, to reorganize tasks waiting for external resources. 
-- **Sensors** : Items that waits for signals to organize pipelines. 
+- **Sensors** : Items that waits for signals to organize pipelines.
+- **Hooks** : Abstraction of an external API to enable Airflow interactions. 
 
 ## Operator :
 Contains the logic of how the data is processed in the pipeline. It is a Python class that encapsulte the logic to do work units, like a wrapper. When an operator is instanciated, it becomes a Task. It can be generic of very specific.
@@ -173,6 +174,17 @@ It is made of :
 - Trigger : asynchronous python code sections living in a single process, called a Triggerer
 - Triggerer : rescheduler or worker that holds a asyncio event loop.
 - Deferred state : a tasks indicates that it is deferred when it paused it's execution, relased a worker slot, and submited a trigger to be catched by the triggerer.   
+
+Operators are in three steps : 
+- Submit & prepare a job to a service ==> Wait for the execution of the job ==> Receive the status of the job and continue.  
+
+In the case of a classic operator, the wait time would occupy a worker slot even if action is processed outside of the airflow run. When using the deferrable operators, a slot would be released during the wait time, and a triggerer would wait for the completion. Triggerer can hold multiple asyncrhonous polling tasks, preventing individual workers for each polling tasks.   
+
+Everytime you are using an external system, deferrable operators should be prefered, providing efficency and reducing costs. Operators can support deferrable mode or not.  
+
+## Hooks : 
+
+
 
 # TBD
 
