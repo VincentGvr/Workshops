@@ -1,4 +1,4 @@
-# 0 Presentation 
+# 0️⃣ Presentation 
 
 Based on the documentation available at :
 - [Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/index.html)
@@ -8,7 +8,7 @@ Airflow is an open-source platform to orchestrate and monitor batch-oriented wor
 
 API = Application Programming Interface. It is a developped interface as a service, to connect computers/programs together, in opposition with user interfaces. It is not necessarly a web API (such as REST API), that means that the API is available via Internet (privately or publically). 
 
-# :1: Airflow versus pipelines in Fabric 
+# :one: Airflow versus pipelines in Fabric 
 
 It is a workflow as code approach that enables flexible framework. As it is developed in Python, it enables : 
 - Version Control & multiple edits/collaboration
@@ -17,7 +17,7 @@ It is a workflow as code approach that enables flexible framework. As it is deve
 
 **Warning :** Apache Airflow is not meant to design event driven workflows/streaming/continuous runs. It needs to has a start and an end.
 
-# 2 Introduction to DAGs 
+# :two: Introduction to DAGs 
 
 DAG = Directed Acyclic Graph. It is an individual **pipeline + schedule**, written in **Python**. When launched, it is a **DAG Run**. 
 DAGs are made of **tasks**. When task is executed at a specific time point it is a **task instance**. 
@@ -40,7 +40,7 @@ Scheduled/Manual/Dataset triggered/Backfill
 Statuses : 
 Queued/Running/Success/Failed 
 
-# 3 Compositions of DAGs 
+# :three: Compositions of DAGs 
 
 DAGs are made of different tasks. These tasks can be of different kinds, such as : 
 - **Operators** : Items that holds the logic of data processing. 
