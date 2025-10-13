@@ -42,6 +42,11 @@ Queued/Running/Success/Failed
 
 # 3 Compositions of DAGs 
 
+DAGs are made of different tasks. These tasks can be of different kinds, such as : 
+- **Operators** : Items that holds the logic of data processing. 
+- **Deferrable operators** : Asyncrhonous operators, to reorganize tasks waiting for external resources. 
+- **Sensors** : Items that waits for signals to organize pipelines. 
+
 ## Operator :
 Contains the logic of how the data is processed in the pipeline. It is a Python class that encapsulte the logic to do work units, like a wrapper. When an operator is instanciated, it becomes a Task. It can be generic of very specific.
   - All operators inherit from the abstract class ```BaseOperator``` that contains logic to execute work. 
@@ -117,6 +122,7 @@ say_hello = PythonOperator(
    python_callable=_say_hello
 )
 ```
+
 **Common decorators** :
 
 - DAG decorator (@dag()), which creates a DAG.
@@ -139,6 +145,11 @@ Sensors are operators that are waiting for something. It checks if a condition i
 - timeout : (in sec.) max time to check condition before the task fails. 
 - soft_fail : (boolean) if not met it is skipped once timed out.  
 
+Failure modes : 
+- soft_fail : (boolean) If an exception is raised, task is marked as skipped instead of fail. 
+- silent_fail : (boolean) Log only but no error if the error is not a common mikstake. 
+- never_fail : (boolean) 
+
 **Common sensors** :
 
 - S3KeySensor: Waits for a key (file) to appear in an Amazon S3 bucket. This sensor is useful if you want your DAG to process files from Amazon S3 as they arrive.
@@ -150,11 +161,21 @@ Sensor decorator enables to create your own sensor. It returns PokeReturnValue.
 
 **Best Practices** : 
 
+- Define timeouts that meets integration logic. Default is 7 days and in most case it is longer than integration timeframe. Do not check state every 60 seconds if the average runtime is 30 minutes. 
+- For long running sensors, the risk is that it never releases a worker, and provoke dead locks. Prefer deferrable operators, and if not available, prefer sensors in reschedule mode.
+- If the poke_interval is shorter than 5 minutes, prefer poke_mode. 
 
+## Deferrable operators (asyncrhonous operators) : 
+
+Deferrable operators are operators that runs asyncrhonously, usign the asyncio library from Python. It allows releasing workers to manager resources efficiently.  
+
+It is made of : 
+- Trigger : asynchronous python code sections living in a single process, called a Triggerer
+- Triggerer : rescheduler or worker that holds a asyncio event loop.
+- Deferred state : a tasks indicates that it is deferred when it paused it's execution, relased a worker slot, and submited a trigger to be catched by the triggerer.   
 
 # TBD
 
-_Deferables operators_
 _XCom_
 
 _Deferrable Operators are a type of operator that releases their worker slot while waiting for 
