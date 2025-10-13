@@ -184,7 +184,11 @@ Everytime you are using an external system, deferrable operators should be prefe
 
 ## Hooks : 
 
+Hooks are abstractions of specific APIs allowing interactions. Standardization of API usage via Hooks makes code cleaner and improves readability. 
 
+## Connect to resources in Airflow : 
+
+Airflow connection are configuration to access to external tools. It is shared to modules via Connection ID to be used. 
 
 # TBD
 
