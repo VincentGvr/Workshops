@@ -17,3 +17,6 @@ https://{workspaceid}.z{xy}.blob.fabric.microsoft.com
   - Deployment pipelines
   - Default semantic models
 - If a workspace contains any unsupported item types, inbound public access can't be restricted for the workspace, even if workspace-level private link is set up.
+- If a workspace is configured to deny inbound public access, you can access it in the Fabric portal only when the request originates from the workspace's associated private endpoint. If access is attempted from public connectivity or from a different private endpoint, the Fabric portal displays an "Access Restricted" message.
+
+  
