@@ -12,3 +12,8 @@ https://{workspaceid}.z{xy}.blob.fabric.microsoft.com
 ```
 - For data warehouse connection strings, use https://{GUID}-{GUID}.z{xy}.datawarehouse.fabric.microsoft.com that is, add z{xy} to the regular warehouse connection string found under SQL connection string. The GUIDs in the FQDN correspond to Tenant GUID in Base32 and Workspace GUID in Base32 respectively. This FQDN is not available as part of the DNS configurations for the private endp
 - The workspace FQDN must be constructed correctly using the workspace object ID without dashes and the correct xy prefix (the first two characters of the workspace object ID). If the FQDN isn't formatted correctly, it doesn't resolve to the intended private IP address, and the workspace-level private link connection fails.
+
+- The following item types aren't currently supported in workspaces enabled with workspace-level private links:
+  - Deployment pipelines
+  - Default semantic models
+- If a workspace contains any unsupported item types, inbound public access can't be restricted for the workspace, even if workspace-level private link is set up.
