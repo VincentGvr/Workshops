@@ -1,3 +1,9 @@
+# Teraform, how it works 
+
+`terraform init` 
+`terraform apply`
+`terraform destroy`
+
 # Before Starting 
 
 - Infrastructure (App Service, Foundry, AI Search, etc.) and application code change at different speeds and for different reasons. Mixing them in one pipeline creates fragile deployments.
