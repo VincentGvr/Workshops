@@ -65,4 +65,84 @@ provider "azurerm" {
 }
 ```
 ### variables.tf
-1. Create a `variables.tf` file. It is a 
+1. Still in infra folder, Create a `variables.tf` file. It plays the role of listing the variables used in the different teraform items. It can contain constrains, descriptions, list of values for each variables.
+2. Add corresponding variables for project name, environment, location, ai service skus, model name and versions ... :
+```
+variable "project_name" {
+  type        = string
+  description = "Short name for this project. Used as a prefix on all Azure resource names to keep them unique and identifiable. Lowercase letters and numbers only, 3-12 chars."
+  default     = "learnai"
+
+  validation {
+    condition     = can(regex("^[a-z0-9]{3,12}$", var.project_name))
+    error_message = "project_name must be 3-12 lowercase letters/numbers only."
+  }
+}
+
+variable "environment" {
+  type        = string
+  description = "Deployment environment name. Affects resource naming and SKU choices. 'dev' uses cheaper SKUs; 'prod' uses production-grade SKUs."
+  default     = "dev"
+
+  validation {
+    condition     = contains(["dev", "staging", "prod"], var.environment)
+    error_message = "environment must be one of: dev, staging, prod."
+  }
+}
+
+# --- Azure location ---
+
+variable "location" {
+  type        = string
+  description = "Azure region where all resources will be created. Not all regions support all AI models. East US and Sweden Central are safe choices for GPT-4o + File Search."
+  default     = "eastus"
+}
+
+# --- AI / Foundry settings ---
+
+variable "ai_services_sku" {
+  type        = string
+  description = "SKU for the Azure AI Services resource. 'S0' is the standard paid tier that enables model deployments and the Agent Service."
+  default     = "S0"
+}
+
+variable "openai_model_name" {
+  type        = string
+  description = "Name of the OpenAI model to deploy inside the Foundry project. gpt-4o is recommended for RAG agents."
+  default     = "gpt-4o"
+}
+
+variable "openai_model_version" {
+  type        = string
+  description = "Version of the model to deploy. Check availability in your chosen region at aka.ms/oai/docs/models."
+  default     = "2024-11-20"
+}
+
+variable "openai_model_capacity" {
+  type        = number
+  description = "Tokens-per-minute capacity in thousands (TPM/1000). 10 = 10,000 TPM. Start low in dev. Increase for production."
+  default     = 10
+}
+
+# --- App Service settings ---
+
+variable "app_service_sku" {
+  type        = string
+  description = "App Service Plan SKU. B1 (Basic) is cheapest for dev/learning. Use P1v3 or higher for production workloads."
+  default     = "B1"
+}
+
+# --- Tags (applied to all resources) ---
+
+variable "tags" {
+  type        = map(string)
+  description = "Azure resource tags applied to every resource. Tags help with cost management, filtering, and governance."
+  default = {
+    project     = "learn-ai-rag-agent"
+    environment = "dev"
+    managed_by  = "terraform"
+  }
+}
+```
+
+### outputs.tf
